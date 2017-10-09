@@ -1,0 +1,2 @@
+# 一个图片加载框架
+基本原理跟其他常用图片库相似，三级缓存中内存缓存为LruCache，磁盘缓存为DiskLruCache，网络缓存使用HttpUrlConnection
