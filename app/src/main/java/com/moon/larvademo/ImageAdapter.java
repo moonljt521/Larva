@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.manager.RequestManagerFragment;
 import com.moon.larva.Larva;
 
 
@@ -37,7 +38,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Larva.getInstance().load(mContext.getApplicationContext(),mList[position],holder.imageView,300,300);
-
 //        Glide.with(mContext).load(mList[position]).into(holder.imageView);
     }
 

@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import java.io.FileDescriptor;
+import java.io.InputStream;
 
 /**
  * author: moon

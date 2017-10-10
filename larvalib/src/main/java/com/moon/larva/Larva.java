@@ -12,10 +12,10 @@ import com.moon.larva.cache.DiskCacheUtil;
 import com.moon.larva.cache.DiskLruCache;
 import com.moon.larva.cache.MemoryCacheUtil;
 import com.moon.larva.cache.NetCacheUtil;
-import com.moon.larva.exception.MainThreadLoadException;
 import com.moon.larva.request.Result;
 import com.moon.larva.utils.FileUtil;
 import com.moon.larva.utils.UDebug;
+import com.moon.larva.utils.Util;
 
 import java.io.File;
 import java.io.IOException;
@@ -210,9 +210,7 @@ public class Larva {
             bitmap = loadFromNet(url, dstWidth, dstHeight);
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (MainThreadLoadException e){
-            e.printStackTrace();
-        } catch (NullPointerException e){
+        }  catch (NullPointerException e){
             e.printStackTrace();
         }
 
@@ -239,17 +237,13 @@ public class Larva {
             bitmap = loadFromNet(url);
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (MainThreadLoadException e){
-            e.printStackTrace();
         }
 
         return bitmap;
     }
 
-    private Bitmap loadFromNet(String url, int dstWidth, int dstHeight) throws IOException,MainThreadLoadException {
-        if (Looper.myLooper() == Looper.getMainLooper()) {
-            throw new MainThreadLoadException("Do not load Bitmap in main thread.");
-        }
+    private Bitmap loadFromNet(String url, int dstWidth, int dstHeight) throws IOException {
+        Util.assertMainThread();
 
         if (mDiskLruCache == null) {
             throw new NullPointerException("mDiskLruCache has not been init");
@@ -269,10 +263,8 @@ public class Larva {
         return loadFromDisk(url, dstWidth, dstHeight);
     }
 
-    private Bitmap loadFromNet(String url) throws IOException,MainThreadLoadException {
-        if (Looper.myLooper() == Looper.getMainLooper()) {
-            throw new MainThreadLoadException("Do not load Bitmap in main thread.");
-        }
+    private Bitmap loadFromNet(String url) throws IOException {
+        Util.assertMainThread();
 
         if (mDiskLruCache == null) {
             throw new NullPointerException("mDiskLruCache has not been init");
@@ -311,10 +303,8 @@ public class Larva {
      * @return
      * @throws IOException
      */
-    private Bitmap loadFromDisk(String url, int dstWidth, int dstHeight) throws IOException,MainThreadLoadException {
-        if (Looper.myLooper() == Looper.getMainLooper()) {
-            throw new MainThreadLoadException("Do not load Bitmap in main thread.");
-        }
+    private Bitmap loadFromDisk(String url, int dstWidth, int dstHeight) throws IOException {
+        Util.assertMainThread();
 
         if (mDiskLruCache == null) {
             throw new NullPointerException("mDiskLruCache has not been init");
@@ -335,10 +325,8 @@ public class Larva {
      * @return
      * @throws IOException
      */
-    private Bitmap loadFromDisk(String url) throws IOException,MainThreadLoadException {
-        if (Looper.myLooper() == Looper.getMainLooper()) {
-            throw new MainThreadLoadException("Do not load Bitmap in main thread.");
-        }
+    private Bitmap loadFromDisk(String url) throws IOException {
+        Util.assertMainThread();
 
         if (mDiskLruCache == null) {
             throw new NullPointerException("mDiskLruCache has not been init");

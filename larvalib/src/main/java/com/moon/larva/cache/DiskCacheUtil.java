@@ -1,10 +1,8 @@
 package com.moon.larva.cache;
 
 import android.graphics.Bitmap;
-import android.os.Looper;
 
 import com.moon.larva.bitmap.BitmapUtil;
-import com.moon.larva.utils.UDebug;
 
 import java.io.FileDescriptor;
 import java.io.FileInputStream;

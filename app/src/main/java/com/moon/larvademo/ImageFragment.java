@@ -54,7 +54,7 @@ public class ImageFragment extends BaseLazeFragment {
                 imageView,300,300);
 
 
-
+//        Glide.with(getActivity()).load("").into(imageView);
 //        new Larva.Create().into(null).load("");
 //
 //        Glide.with(this).load("").into(imageView);
