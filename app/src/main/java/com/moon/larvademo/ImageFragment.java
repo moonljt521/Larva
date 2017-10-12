@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.moon.larva.Larva;
 
 /**
@@ -48,16 +47,9 @@ public class ImageFragment extends BaseLazeFragment {
 
             return;
         }
-        // do sth
-        Larva.getInstance().load(getActivity().getApplicationContext(),"http://www.cs.com" +
-                        ".cn/xwzx/201709/W020170927332375618264.jpg",
-                imageView,300,300);
 
-
-//        Glide.with(getActivity()).load("").into(imageView);
-//        new Larva.Create().into(null).load("");
-//
-//        Glide.with(this).load("").into(imageView);
+        Larva.with(getActivity().getApplicationContext()).load("http://www.cs.com" +
+                ".cn/xwzx/201709/W020170927332375618264.jpg").into(imageView).override(300,300);
 
         loadFinish = true;
 
